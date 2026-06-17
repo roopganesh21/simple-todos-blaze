@@ -10,6 +10,7 @@ import './Login.js';
 const state = new ReactiveDict();
 
 Template.mainContainer.onCreated(function() {
+  this.subscribe('tasks');
   state.set('hideCompleted', false);
 });
 
@@ -25,6 +26,9 @@ Template.mainContainer.helpers({
   },
   pendingTasksCount() {
     return TasksCollection.find({ isChecked: { $ne: true } }).count();
+  },
+  isLoading() {
+    return !Template.instance().subscriptionsReady();
   },
 });
 

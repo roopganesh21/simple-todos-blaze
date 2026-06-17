@@ -17,11 +17,15 @@
         <button class="hide-completed">{{#if hideCompleted}}Show All{{else}}Hide Completed{{/if}}</button>
       </div>
 
-      <ul class="task-list">
-        {{#each tasks}}
-          {{> task}}
-        {{/each}}
-      </ul>
+      {{#if isLoading}}
+        <p>Loading...</p>
+      {{else}}
+        <ul class="task-list">
+          {{#each tasks}}
+            {{> task}}
+          {{/each}}
+        </ul>
+      {{/if}}
     {{else}}
       {{> login}}
     {{/if}}
