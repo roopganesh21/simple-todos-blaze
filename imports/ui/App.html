@@ -1,24 +1,29 @@
 <!-- imports/ui/App.html -->
 <template name="mainContainer">
   <div class="container">
-    <header class="header">
-      <h1>Todo List</h1>
-    </header>
+    {{#if currentUser}}
+      <header class="header">
+        <h1>Todo List</h1>
+        <button class="logout-btn">Logout</button>
+      </header>
 
-    <form class="task-form">
-      <input type="text" name="text" placeholder="Type a new task" />
-      <button type="submit">Add Task</button>
-    </form>
+      <form class="task-form">
+        <input type="text" name="text" placeholder="Type a new task" />
+        <button type="submit">Add Task</button>
+      </form>
 
-    <div class="filter-bar">
-      <span>{{pendingTasksCount}} task(s) remaining</span>
-      <button class="hide-completed">{{#if hideCompleted}}Show All{{else}}Hide Completed{{/if}}</button>
-    </div>
+      <div class="filter-bar">
+        <span>{{pendingTasksCount}} task(s) remaining</span>
+        <button class="hide-completed">{{#if hideCompleted}}Show All{{else}}Hide Completed{{/if}}</button>
+      </div>
 
-    <ul class="task-list">
-      {{#each tasks}}
-        {{> task}}
-      {{/each}}
-    </ul>
+      <ul class="task-list">
+        {{#each tasks}}
+          {{> task}}
+        {{/each}}
+      </ul>
+    {{else}}
+      {{> login}}
+    {{/if}}
   </div>
 </template>

@@ -1,9 +1,11 @@
 // imports/ui/App.js
+import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { TasksCollection } from '../api/TasksCollection.js';
 import './App.html';
 import './Task.js';
+import './Login.js';
 
 const state = new ReactiveDict();
 
@@ -27,6 +29,9 @@ Template.mainContainer.helpers({
 });
 
 Template.mainContainer.events({
+  'click .logout-btn'() {
+    Meteor.logout();
+  },
   'click .hide-completed'() {
     state.set('hideCompleted', !state.get('hideCompleted'));
   },
@@ -36,6 +41,7 @@ Template.mainContainer.events({
 
     // Get value from form element
     const target = event.target;
+    if (!target.text) return;
     const text = target.text.value.trim();
 
     if (text) {
