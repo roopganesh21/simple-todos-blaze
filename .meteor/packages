@@ -26,3 +26,4 @@ hot-module-replacement  # Update code in development without reloading the page
 blaze-hot               # Update files using Blaze's API with HMR
 
 rspack                  # Integrate Rspack into Meteor for client and server app bundling
+reactive-dict

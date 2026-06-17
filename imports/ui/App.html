@@ -10,6 +10,11 @@
       <button type="submit">Add Task</button>
     </form>
 
+    <div class="filter-bar">
+      <span>{{pendingTasksCount}} task(s) remaining</span>
+      <button class="hide-completed">{{#if hideCompleted}}Show All{{else}}Hide Completed{{/if}}</button>
+    </div>
+
     <ul class="task-list">
       {{#each tasks}}
         {{> task}}
