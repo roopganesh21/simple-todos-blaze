@@ -1,6 +1,6 @@
 <!-- imports/ui/Task.html -->
 <template name="task">
-  <li class="task-item">
+  <li class="task-item" data-id="{{_id}}">
     <input type="checkbox" checked="{{isChecked}}">
     {{#if category}}
       <span class="category-badge {{categoryClass}}">{{category}}</span>

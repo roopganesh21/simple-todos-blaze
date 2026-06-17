@@ -2,38 +2,42 @@
 <template name="mainContainer">
   <div class="container">
     {{#if currentUser}}
-      <header class="header">
-        <h1>Todo List</h1>
-        <button class="logout-btn">Logout</button>
-      </header>
-
-      <form class="task-form">
-        <input type="text" name="text" placeholder="Type a new task" />
-        <select name="category">
-          <option value="" disabled selected>(Select Category)</option>
-          <option value="Work">Work</option>
-          <option value="Personal">Personal</option>
-          <option value="Urgent">Urgent</option>
-        </select>
-        <button type="submit">Add Task</button>
-      </form>
-
-      <div class="filter-bar">
-        <span>{{pendingTasksCount}} task(s) remaining</span>
-        <button class="hide-completed">{{#if hideCompleted}}Show All{{else}}Hide Completed{{/if}}</button>
-      </div>
-
-      {{#if isLoading}}
-        <p>Loading...</p>
-      {{else}}
-        <ul class="task-list">
-          {{#each tasks}}
-            {{> task}}
-          {{/each}}
-        </ul>
-      {{/if}}
+      {{> todoList}}
     {{else}}
       {{> login}}
     {{/if}}
   </div>
+</template>
+
+<template name="todoList">
+  <header class="header">
+    <h1>Todo List</h1>
+    <button class="logout-btn">Logout</button>
+  </header>
+
+  <form class="task-form">
+    <input type="text" name="text" placeholder="Type a new task" />
+    <select name="category">
+      <option value="" disabled selected>(Select Category)</option>
+      <option value="Work">Work</option>
+      <option value="Personal">Personal</option>
+      <option value="Urgent">Urgent</option>
+    </select>
+    <button type="submit">Add Task</button>
+  </form>
+
+  <div class="filter-bar">
+    <span>{{pendingTasksCount}} task(s) remaining</span>
+    <button class="hide-completed">{{#if hideCompleted}}Show All{{else}}Hide Completed{{/if}}</button>
+  </div>
+
+  <ul class="task-list">
+    {{#if isLoading}}
+      <p style="padding: 12px 16px; margin: 0; color: #888;">Loading...</p>
+    {{else}}
+      {{#each tasks}}
+        {{> task}}
+      {{/each}}
+    {{/if}}
+  </ul>
 </template>
