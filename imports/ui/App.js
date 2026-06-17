@@ -45,11 +45,7 @@ Template.mainContainer.events({
     const text = target.text.value.trim();
 
     if (text) {
-      await TasksCollection.insertAsync({
-        text,
-        createdAt: new Date(),
-        isChecked: false,
-      });
+      await Meteor.callAsync('tasks.insert', { text });
 
       // Clear form input
       target.text.value = '';

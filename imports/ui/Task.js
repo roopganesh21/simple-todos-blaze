@@ -1,17 +1,18 @@
 // imports/ui/Task.js
+import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { TasksCollection } from '../api/TasksCollection';
 import './Task.html';
 
 Template.task.events({
-  'click input[type=checkbox]'() {
-    // Toggle checked status in MongoDB
-    TasksCollection.updateAsync(this._id, {
-      $set: { isChecked: !this.isChecked },
+  async 'click input[type=checkbox]'() {
+    // Toggle checked status via Meteor Method
+    await Meteor.callAsync('tasks.setIsChecked', {
+      taskId: this._id,
+      isChecked: !this.isChecked,
     });
   },
-  'click .delete'() {
-    // Remove task from MongoDB
-    TasksCollection.removeAsync(this._id);
+  async 'click .delete'() {
+    // Remove task via Meteor Method
+    await Meteor.callAsync('tasks.remove', { taskId: this._id });
   },
 });
