@@ -1,4 +1,3 @@
-// imports/api/tasksPublications.js
 import { Meteor } from 'meteor/meteor';
 import { TasksCollection } from './TasksCollection.js';
 

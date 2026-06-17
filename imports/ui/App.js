@@ -1,4 +1,3 @@
-// imports/ui/App.js
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
@@ -70,10 +69,7 @@ Template.todoList.events({
     state.set('hideCompleted', !state.get('hideCompleted'));
   },
   async 'submit form'(event) {
-    // Prevent default browser form submit
     event.preventDefault();
-
-    // Get value from form element
     const target = event.target;
     if (!target.text) return;
     const text = target.text.value.trim();
@@ -82,7 +78,6 @@ Template.todoList.events({
     if (text) {
       await Meteor.callAsync('tasks.insert', { text, category });
 
-      // Clear form inputs
       target.text.value = '';
       target.category.value = '';
     }

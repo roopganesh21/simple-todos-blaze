@@ -1,4 +1,3 @@
-// server/main.js
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { TasksCollection } from '../imports/api/TasksCollection';
@@ -6,7 +5,6 @@ import '../imports/api/tasksMethods.js';
 import '../imports/api/tasksPublications.js';
 
 Meteor.startup(async () => {
-  // Ensure default user exists and retrieve their ID
   let userId = null;
   const defaultUser = await Meteor.users.findOneAsync({ username: 'meteorite' });
   
@@ -19,7 +17,7 @@ Meteor.startup(async () => {
     });
   }
 
-  // Seed default tasks for the user with order indices if task collection is empty
+  // seed default tasks
   if (await TasksCollection.find().countAsync() === 0) {
     await TasksCollection.insertAsync({
       text: 'Buy groceries',
@@ -41,7 +39,7 @@ Meteor.startup(async () => {
     });
   }
 
-  // Migration: Fix any existing tasks that don't have an order field
+  // set order for tasks missing it
   const tasksWithoutOrder = await TasksCollection.find({ order: { $exists: false } }).fetchAsync();
   if (tasksWithoutOrder.length > 0) {
     console.log(`Migrating ${tasksWithoutOrder.length} tasks without an order field...`);

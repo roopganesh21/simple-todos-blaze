@@ -1,4 +1,3 @@
-// imports/api/tasksMethods.js
 import { Meteor } from 'meteor/meteor';
 import { TasksCollection } from './TasksCollection.js';
 
@@ -8,7 +7,7 @@ Meteor.methods({
       throw new Meteor.Error('not-authorized');
     }
 
-    // Determine the next order index for sequential drag-and-drop
+    // next order for drag-and-drop
     const lastTask = await TasksCollection.findOneAsync(
       { userId: this.userId },
       { sort: { order: -1 } }

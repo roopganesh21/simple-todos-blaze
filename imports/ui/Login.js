@@ -12,7 +12,7 @@ Template.login.events({
 
     Meteor.loginWithPassword(username, password, function(err) {
       if (err) {
-        alert(err.reason);
+        alert('Something went wrong. Please check your credentials.');
       }
     });
   },
