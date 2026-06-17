@@ -12,6 +12,7 @@ li.task-item:active { cursor: grabbing; }
 form.task-form { display: flex; padding: 12px; background: white; margin-bottom: 8px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
 form.task-form input[type=text] { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem; }
 form.task-form input[type=password] { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem; margin-left: 8px; }
+form.task-form select { padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem; margin-left: 8px; background: white; color: #333; }
 form.task-form button { padding: 8px 16px; background: #317EFB; color: white; border: none; border-radius: 4px; cursor: pointer; margin-left: 8px; }
 .filter-bar { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; color: #555; font-size: 0.9rem; }
 .hide-completed { padding: 6px 12px; background: #eee; border: none; border-radius: 4px; cursor: pointer; font-size: 0.85rem; }
@@ -41,3 +42,8 @@ form.task-form button { padding: 8px 16px; background: #317EFB; color: white; bo
   margin-bottom: 16px;
   color: #333;
 }
+
+.category-badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin-right: 8px; }
+.category-work { background: #dbeafe; color: #1d4ed8; }
+.category-personal { background: #dcfce7; color: #166534; }
+.category-urgent { background: #fee2e2; color: #dc2626; }

@@ -47,12 +47,14 @@ Template.mainContainer.events({
     const target = event.target;
     if (!target.text) return;
     const text = target.text.value.trim();
+    const category = target.category.value;
 
     if (text) {
-      await Meteor.callAsync('tasks.insert', { text });
+      await Meteor.callAsync('tasks.insert', { text, category });
 
-      // Clear form input
+      // Clear form inputs
       target.text.value = '';
+      target.category.value = '';
     }
   },
 });
